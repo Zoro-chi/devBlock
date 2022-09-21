@@ -9,6 +9,7 @@ require("dotenv").config({ path: path.resolve(__dirname, "./config/.env") });
 
 const authRoute = require("./routes/auth");
 const userRoute = require("./routes/users");
+const postRoute = require("./routes/posts");
 
 // MONGOOSE CONNECTION
 connectDB();
@@ -16,10 +17,11 @@ connectDB();
 // MIDDLEWARE
 app.use(express.json());
 app.use(helmet());
-app.use(morgan("common"));
+app.use(morgan("dev"));
 
 app.use("/api/users", userRoute);
-app.use("/api/auth", authRoute)
+app.use("/api/auth", authRoute);
+app.use("/api/posts", postRoute);
 
 app.listen(PORT, () => {
   console.log(`server running on port ${PORT}`);
