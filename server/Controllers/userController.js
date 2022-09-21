@@ -2,7 +2,6 @@ const User = require("../Models/User");
 const bcrypt = require("bcrypt");
 
 const userController = {
-  // UPDATE USER
   updateUser: async (req, res) => {
     if (req.body.userId === req.params.id || req.body.isAdmin) {
       if (req.body.password) {
@@ -27,7 +26,6 @@ const userController = {
     }
   },
 
-  // DELETE USER
   deleteUser: async (req, res) => {
     if (req.body.userId === req.params.id || req.body.isAdmin) {
       try {
@@ -41,7 +39,6 @@ const userController = {
     }
   },
 
-  // GET USER
   getUser: async (req, res) => {
     try {
       const user = await User.findById(req.params.id);
@@ -52,7 +49,6 @@ const userController = {
     }
   },
 
-  // FOLLOW USER
   followUser: async (req, res) => {
     if (req.body.userId !== req.params.id) {
       try {
@@ -81,7 +77,6 @@ const userController = {
     }
   },
 
-  // UNFOLLOW USER
   unFollowUser: async (req, res) => {
     if (req.body.userId !== req.params.id) {
       try {

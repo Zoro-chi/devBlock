@@ -2,7 +2,6 @@ const User = require("../Models/User");
 const bcrypt = require("bcrypt");
 
 const authController = {
-  // REGISTER
   register: async (req, res) => {
     try {
       // HASH PASSWORD
@@ -24,7 +23,6 @@ const authController = {
     }
   },
 
-  // LOGIN
   login: async (req, res) => {
     try {
       const user = await User.findOne({ email: req.body.email });
