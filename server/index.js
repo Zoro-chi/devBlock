@@ -27,6 +27,7 @@ app.use(express.json());
 app.use(helmet());
 app.use(morgan("dev"));
 
+// SESSIONS
 app.use(
   session({
     secret: process.env.SESSION_SECRET,

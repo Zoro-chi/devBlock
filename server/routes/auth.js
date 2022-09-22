@@ -24,7 +24,7 @@ router.get("/login/failed", (req, res) => {
   });
 });
 
-router.get("/login/sucess", (req, res) => {
+router.get("/login/success", (req, res) => {
   if (req.user) {
     res.status(401).json({
       sucess: true,

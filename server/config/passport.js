@@ -16,7 +16,7 @@ module.exports = function (passport) {
         // });
         const newUser = {
           username: profile.displayName,
-          email: profile.emial,
+          email: profile.emial || "private",
           profilePicture: profile.photos[0],
         };
         try {
