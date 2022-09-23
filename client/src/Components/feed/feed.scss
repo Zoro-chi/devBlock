@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Poppins:wght@400;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap");
 
 // VARIABLES
 $poppins-font: "Poppins", sans-serif;
@@ -14,4 +14,9 @@ $white: #f4f8fa;
   height: calc(100vh - 3.2rem);
   display: flex;
   justify-content: center;
+
+  .feed-wrapper {
+    padding: 1.3rem;
+    width: 100%;
+  }
 }
