@@ -7,6 +7,8 @@ import post3 from "../assets/images/post3.jpg";
 import post4 from "../assets/images/post4.jpg";
 import zara from "../assets/images/zara.jpg";
 import zoro from "../assets/images/zoro.jpg";
+import birthday from "../assets/images/birthday-icon.png";
+import ad from "../assets/images/coin-block.png";
 
 export default {
   defaultPfp,
@@ -18,4 +20,6 @@ export default {
   post4,
   zara,
   zoro,
+  birthday,
+  ad,
 };

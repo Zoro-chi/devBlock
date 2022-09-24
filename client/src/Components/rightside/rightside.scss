@@ -14,4 +14,82 @@ $white: #f4f8fa;
   height: calc(100vh - 3.2rem);
   display: flex;
   justify-content: center;
+
+  .rightside-wrapper {
+    padding: 1.3rem 1.3rem 0 0;
+
+    .birthday-container {
+      display: flex;
+      align-items: center;
+
+      .birthday-icon {
+        width: 1.8rem;
+        margin-right: 1rem;
+      }
+
+      .birthday-text {
+        font-weight: 300;
+      }
+    }
+
+    .rightside-ad {
+      width: 100%;
+      border-radius: 10px;
+      margin: 2rem 0;
+    }
+
+    .rightside-title {
+      margin-bottom: 1.3rem;
+    }
+
+    .rightside-friends-list {
+      padding: 0;
+      margin: 0;
+      list-style: none;
+    }
+  }
+
+  .rightside-title {
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin-bottom: 10px;
+  }
+
+  .rightside-info {
+    margin-bottom: 1.9rem;
+
+    .rightside-info-item {
+      margin-bottom: 10px;
+
+      .rightside-info-key {
+        font-weight: 500;
+        margin-right: 1rem;
+        color: $blue;
+      }
+
+      .rightside-info-value {
+        font-weight: 300;
+      }
+    }
+  }
+
+  .rightside-followings {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+
+    .rightside-following {
+      display: flex;
+      flex-flow: column;
+      margin-bottom: 1.3rem;
+      cursor: pointer;
+    }
+  }
+}
+
+.rightside-following-image {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 5px;
 }

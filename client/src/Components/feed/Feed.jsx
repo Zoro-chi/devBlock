@@ -1,5 +1,6 @@
 import "./feed.scss";
 import { Share, Post } from "../index";
+import { Posts } from "../../dummy";
 
 const Feed = () => {
   return (
@@ -7,13 +8,9 @@ const Feed = () => {
       <div className="feed-wrapper">
         <Share />
         <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
+        {Posts.map((p) => (
+          <Post key={p.id} post={p} />
+        ))}
       </div>
     </div>
   );

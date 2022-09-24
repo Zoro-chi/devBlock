@@ -10,7 +10,8 @@ import {
 } from "@mui/icons-material";
 
 import "./leftside.scss";
-import { images } from "../../constants";
+import { Users } from "../../dummy";
+import Friends from "../friends/Friends";
 
 const Leftside = () => {
   return (
@@ -53,38 +54,9 @@ const Leftside = () => {
         <button className="leftside-button"> Show more </button>
         <hr className="leftside-hr" />
         <ul className="leftside-freinds-list">
-          <li className="leftside-freind">
-            <img
-              src={images.john}
-              alt="profile"
-              className="leftside-freind-pfp"
-            />
-            <span className="letside-freind-name"> John Doe </span>
-          </li>
-          <li className="leftside-freind">
-            <img
-              src={images.defaultPfp}
-              alt="profile"
-              className="leftside-freind-pfp"
-            />
-            <span className="letside-freind-name"> Tom Bigglesworth </span>
-          </li>
-          <li className="leftside-freind">
-            <img
-              src={images.zoro}
-              alt="profile"
-              className="leftside-freind-pfp"
-            />
-            <span className="letside-freind-name"> Zoro 0x </span>
-          </li>
-          <li className="leftside-freind">
-            <img
-              src={images.zara}
-              alt="profile"
-              className="leftside-freind-pfp"
-            />
-            <span className="letside-freind-name"> Zara fang </span>
-          </li>
+          {Users.map((user) => (
+            <Friends key={user.id} user={user} />
+          ))}
         </ul>
       </div>
     </div>

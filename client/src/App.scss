@@ -19,6 +19,11 @@ $white: #f4f8fa;
   transition: all 0.2s ease-in-out;
 }
 
+body {
+  height: 100vh;
+  width: 100vw;
+}
+
 .light {
   .text {
     color: $black;
