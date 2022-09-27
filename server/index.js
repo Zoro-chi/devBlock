@@ -24,8 +24,16 @@ connectDB();
 
 // MIDDLEWARE
 app.use(express.json());
+// app.use(express.urlencoded({}))
 app.use(helmet());
 app.use(morgan("dev"));
+app.use(
+  cors({
+    origin: ["http://localhost:2121", "http://localhost:3000"],
+    // methods: "GET,POST,PUT,DELETE",
+    credentials: true,
+  })
+);
 
 // SESSIONS
 app.use(
@@ -42,14 +50,6 @@ app.use(
 // PASSPORT MIDDLEWARE
 app.use(passport.initialize());
 app.use(passport.session());
-
-app.use(
-  cors({
-    origin: "http://localhost:2121",
-    methods: "GET,POST,PUT,DELETE",
-    credentials: true,
-  })
-);
 
 // ROUTES
 app.use("/api/users", userRoute);

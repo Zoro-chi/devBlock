@@ -1,4 +1,5 @@
 import { Search, Person, Chat, Notifications } from "@mui/icons-material";
+import { Link } from "react-router-dom";
 
 import "./navbar.scss";
 import { images } from "../../constants";
@@ -7,9 +8,11 @@ const Navbar = () => {
   return (
     <div className="navbar-container">
       <nav className="navbar-left">
-        <span className="logo">
-          dev<span>Block</span>
-        </span>
+        <Link to="/" style={{ textDecoration: "none" }}>
+          <span className="logo">
+            dev<span>Block</span>
+          </span>
+        </Link>
       </nav>
 
       <nav className="navbar-center">

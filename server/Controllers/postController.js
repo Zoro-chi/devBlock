@@ -66,7 +66,7 @@ const postController = {
 
   timelinePosts: async (req, res) => {
     try {
-      const currentUser = await User.findById(req.body.userId);
+      const currentUser = await User.findById(req.params.userId);
       const userPosts = await Post.find({ userId: currentUser.id });
       const friendsPosts = await Promise.all(
         currentUser.following.map((friendId) => {
@@ -75,7 +75,7 @@ const postController = {
       );
       let timeline = userPosts.concat(...friendsPosts);
       timeline.sort((a, b) => b.createdAt - a.createdAt);
-      res.json(timeline);
+      res.status(200).json(timeline);
     } catch (error) {
       res.status(500).json(error);
     }

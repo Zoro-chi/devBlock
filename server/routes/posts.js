@@ -18,6 +18,6 @@ router.put("/:id/like", ensureAuth, postController.likePost);
 router.get("/:id", ensureAuth, postController.getPost);
 
 // GET TIMELINE POSTS
-router.get("/timeline/all", ensureAuth, postController.timelinePosts);
+router.get("/timeline/:userId", ensureAuth, postController.timelinePosts);
 
 module.exports = router;
