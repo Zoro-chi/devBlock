@@ -3,7 +3,6 @@ const app = express();
 const path = require("path");
 const cors = require("cors");
 const passport = require("passport");
-require("./config/passport");
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
 const flash = require("express-flash");
@@ -29,8 +28,8 @@ app.use(helmet());
 app.use(morgan("dev"));
 app.use(
   cors({
-    origin: ["http://localhost:2121", "http://localhost:3000"],
-    // methods: "GET,POST,PUT,DELETE",
+    origin: process.env.CLIENT_URL,
+    methods: "GET,POST,PUT,DELETE",
     credentials: true,
   })
 );

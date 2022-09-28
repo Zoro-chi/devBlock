@@ -12,7 +12,7 @@ const Feed = () => {
   useEffect(() => {
     const fetchTimeline = async () => {
       const timeline = await getTimelinePosts("632b0b187c118122c34240ea");
-      console.log(timeline);
+      console.log(timeline.data);
     };
     fetchTimeline();
   }, []);

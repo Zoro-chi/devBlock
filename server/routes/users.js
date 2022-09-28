@@ -7,18 +7,18 @@ router.get("/", (req, res) => {
 });
 
 // UPDATE USER
-router.put("/:id", ensureAuth, userController.updateUser);
+router.put("/:id", userController.updateUser);
 
 // DELETE USER
-router.delete("/:id", ensureAuth, userController.deleteUser);
+router.delete("/:id", userController.deleteUser);
 
 // GET USER
-router.get("/:id", ensureAuth, userController.getUser);
+router.get("/:id", userController.getUser);
 
 // FOLLOW USER
-router.put("/:id/follow", ensureAuth, userController.followUser);
+router.put("/:id/follow", userController.followUser);
 
 // UNFOLLOW USER
-router.put("/:id/unfollow", ensureAuth, userController.unFollowUser);
+router.put("/:id/unfollow", userController.unFollowUser);
 
 module.exports = router;

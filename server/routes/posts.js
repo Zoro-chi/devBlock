@@ -3,21 +3,21 @@ const postController = require("../Controllers/postController");
 const { ensureAuth } = require("../Middleware/auth");
 
 // CREATE POST
-router.post("/", ensureAuth, postController.createPost);
+router.post("/", postController.createPost);
 
 // UPDATE POST
-router.put("/:id", ensureAuth, postController.updatePost);
+router.put("/:id", postController.updatePost);
 
 // DELETE POST
-router.delete("/:id", ensureAuth, postController.deletePost);
+router.delete("/:id", postController.deletePost);
 
 // LIKE POST
-router.put("/:id/like", ensureAuth, postController.likePost);
+router.put("/:id/like", postController.likePost);
 
 // GET POST
-router.get("/:id", ensureAuth, postController.getPost);
+router.get("/:id", postController.getPost);
 
 // GET TIMELINE POSTS
-router.get("/timeline/:userId", ensureAuth, postController.timelinePosts);
+router.get("/timeline/:userId", postController.timelinePosts);
 
 module.exports = router;
