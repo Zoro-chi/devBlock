@@ -1,19 +1,24 @@
 import { useState, useEffect } from "react";
 import { FavoriteBorder, Favorite, MoreVert } from "@mui/icons-material";
+import { format } from "timeago.js";
+import { Link } from "react-router-dom";
 
 import "./post.scss";
+import { getUser } from "../../Api/userRequests";
 import { images } from "../../constants";
-import { Users } from "../../dummy";
 
 const Post = ({ post }) => {
-  const [like, setLike] = useState(0);
+  const [like, setLike] = useState(post.likes.length);
   const [isLiked, setIsLiked] = useState(false);
+  const [user, setUser] = useState({});
 
   useEffect(() => {
-    if (post) {
-      setLike(post.like);
-    }
-  }, []);
+    const fetchUser = async () => {
+      const user = await getUser(post.userId);
+      setUser(user.data);
+    };
+    fetchUser();
+  }, [post.userId]);
 
   const likeHandler = () => {
     setLike(isLiked ? like - 1 : like + 1);
@@ -27,18 +32,15 @@ const Post = ({ post }) => {
           <div className="post-wrapper">
             <div className="post-wrapper-top">
               <div className="post-top-left">
-                <img
-                  className="post-pfp"
-                  src={
-                    Users.filter((user) => user.id === post.id)[0]
-                      .profilePicture
-                  }
-                  alt=""
-                />
-                <span className="post-username">
-                  {Users.filter((user) => user.id === post.id)[0].username}
-                </span>
-                <span className="post-date"> {post.date} </span>
+                <Link to={`profile/${user.username}`}>
+                  <img
+                    className="post-pfp"
+                    src={user.profilePicture || images.defaultPfp}
+                    alt=""
+                  />
+                </Link>
+                <span className="post-username">{user.username}</span>
+                <span className="post-date"> {format(post.createdAt)} </span>
               </div>
               <div className="post-top-right">
                 <MoreVert />
@@ -47,7 +49,7 @@ const Post = ({ post }) => {
 
             <div className="post-wrapper-center">
               <span className="post-text"> {post?.desc} </span>
-              <img className="post-image" src={post.photo} alt="" />
+              <img className="post-image" src={post?.img} alt="" />
             </div>
 
             <div className="post-wrapper-bottom">

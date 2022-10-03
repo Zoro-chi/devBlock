@@ -18,6 +18,5 @@ const API = axios.create({
   baseURL: getBaseUrl(),
 });
 
-export const getTimelinePosts = (id) => API.get(`/api/posts/timeline/${id}`);
-export const getUserPosts = (username) =>
-  API.get(`/api/posts/profile/${username}`);
+export const getUser = (username) =>
+  API.get(`/api/users/?username=${username}`);

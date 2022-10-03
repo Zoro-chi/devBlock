@@ -3,7 +3,7 @@ import { images } from "../../constants";
 import { Users } from "../../dummy";
 import Online from "../online/Online";
 
-const Rightside = ({ profile }) => {
+const Rightside = ({ user }) => {
   const HomeRightside = () => {
     return (
       <>
@@ -31,11 +31,11 @@ const Rightside = ({ profile }) => {
         <div className="rightside-info">
           <div className="rightside-info-item">
             <span className="rightside-info-key"> City: </span>
-            <span className="rightside-info-value"> Monaco </span>
+            <span className="rightside-info-value"> {user.city} </span>
           </div>
           <div className="rightside-info-item">
             <span className="rightside-info-key"> From: </span>
-            <span className="rightside-info-value"> Lagos </span>
+            <span className="rightside-info-value"> {user.from} </span>
           </div>
         </div>
 
@@ -94,7 +94,7 @@ const Rightside = ({ profile }) => {
   return (
     <div className="rightside">
       <div className="rightside-wrapper">
-        {profile ? <ProfileRightside /> : <HomeRightside />}
+        {user ? <ProfileRightside /> : <HomeRightside />}
       </div>
     </div>
   );

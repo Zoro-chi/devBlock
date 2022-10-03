@@ -1,12 +1,28 @@
 const Post = require("../Models/Post");
 const User = require("../Models/User");
+const cloudinary = require("../Middleware/cloudinary");
 
 const postController = {
+  // createPost: async (req, res) => {
+  //   const newPost = new Post(req.body);
+  //   try {
+  //     const savedPost = await newPost.save();
+  //     res.status(200).json(savedPost);
+  //   } catch (error) {
+  //     res.status(500).json(error);
+  //   }
+  // },
   createPost: async (req, res) => {
-    const newPost = new Post(req.body);
+    const result = await cloudinary.uploader.upload(req.file.path);
     try {
-      const savedPost = await newPost.save();
-      res.status(200).json(savedPost);
+      await Post.create({
+        image: result.secure_url,
+        cloudinaryId: result.public_id,
+        desc: req.body.desc,
+        likes: 0,
+        userId: req.user.id,
+      });
+      res.status(200).json("Post saved");
     } catch (error) {
       res.status(500).json(error);
     }
@@ -30,6 +46,7 @@ const postController = {
     try {
       const post = await Post.findById(req.params.id);
       if (post.userId === req.body.userId) {
+        await cloudinary.uploader.destroy(post.cloudinaryId);
         await post.deleteOne();
         res.status(200).json("Your post has been deleted");
       } else {
@@ -76,6 +93,16 @@ const postController = {
       let timeline = userPosts.concat(...friendsPosts);
       timeline.sort((a, b) => b.createdAt - a.createdAt);
       res.status(200).json(timeline);
+    } catch (error) {
+      res.status(500).json(error);
+    }
+  },
+
+  userPosts: async (req, res) => {
+    try {
+      const user = await User.findOne({ username: req.params.username });
+      const posts = await Post.find({ userId: user._id });
+      res.status(200).json(posts);
     } catch (error) {
       res.status(500).json(error);
     }

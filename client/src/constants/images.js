@@ -9,6 +9,7 @@ import zara from "../assets/images/zara.jpg";
 import zoro from "../assets/images/zoro.jpg";
 import birthday from "../assets/images/birthday-icon.png";
 import ad from "../assets/images/coin-block.png";
+import defaultCover from "../assets/images/defaultCover.jpg";
 
 export default {
   defaultPfp,
@@ -22,4 +23,5 @@ export default {
   zoro,
   birthday,
   ad,
+  defaultCover,
 };
