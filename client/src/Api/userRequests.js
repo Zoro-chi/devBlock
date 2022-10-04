@@ -18,5 +18,7 @@ const API = axios.create({
   baseURL: getBaseUrl(),
 });
 
-export const getUser = (username) =>
-  API.get(`/api/users/?username=${username}`);
+export const getUserByName = (username) =>
+  API.get(`/api/users?username=${username}`);
+
+export const getUserById = (id) => API.get(`/api/users?userId=${id}`);

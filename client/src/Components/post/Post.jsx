@@ -4,7 +4,7 @@ import { format } from "timeago.js";
 import { Link } from "react-router-dom";
 
 import "./post.scss";
-import { getUser } from "../../Api/userRequests";
+import { getUserById } from "../../Api/userRequests";
 import { images } from "../../constants";
 
 const Post = ({ post }) => {
@@ -14,7 +14,7 @@ const Post = ({ post }) => {
 
   useEffect(() => {
     const fetchUser = async () => {
-      const user = await getUser(post.userId);
+      const user = await getUserById(post.userId);
       setUser(user.data);
     };
     fetchUser();

@@ -4,20 +4,19 @@ import { useParams } from "react-router";
 import "./profile.scss";
 import { Feed, Leftside, Navbar, Rightside } from "../../Components/index";
 import { images } from "../../constants";
-import { getUser } from "../../Api/userRequests";
+import { getUserByName } from "../../Api/userRequests";
 
 const Profile = () => {
   const [user, setUser] = useState({});
   const username = useParams().username;
-  console.log(username);
 
   useEffect(() => {
     const fetchUser = async () => {
-      const user = await getUser("Zoro");
+      const user = await getUserByName(username);
       setUser(user.data);
     };
     fetchUser();
-  }, []);
+  }, [username]);
 
   return (
     <>
