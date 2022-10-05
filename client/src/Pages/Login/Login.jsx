@@ -1,15 +1,25 @@
-import { useRef } from "react";
+import { useContext, useRef } from "react";
+import { Link } from "react-router-dom";
+import { CircularProgress } from "@mui/material";
+
+import { loginCall } from "../../Api/apiCalls";
+import { AuthContext } from "../../context/authContext";
 
 import "./login.scss";
 
 const Login = () => {
   const email = useRef();
   const password = useRef();
+  const { user, isFetching, error, dispatch } = useContext(AuthContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(email.current.value);
+    loginCall(
+      { email: email.current.value, password: password.current.value },
+      dispatch
+    );
   };
+  console.log(user);
 
   return (
     <div className="login">
@@ -38,11 +48,32 @@ const Login = () => {
               required
               minLength={6}
             />
-            <button className="login-button"> Log In </button>
-            <span className="login-forgot"> Forgot password? </span>
-            <button className="login-register-button">
-              Create a new account
+            <button
+              className="login-button"
+              type="submit"
+              disabled={isFetching}
+            >
+              {isFetching ? <CircularProgress size="20px" /> : "Log In"}
             </button>
+            <span className="login-forgot"> Forgot password? </span>
+            {/* {isFetching ? (
+              <button
+                className="login-register-button"
+                style={{
+                  color: "mediumspringgreen",
+                  backgroundColor: "#f4f8fa",
+                }}
+              >
+                Create new account
+              </button>
+            ) : (
+              <button className="login-register-button">
+                Create new account
+              </button>
+            )} */}
+            <Link to={"/register"} style={{ textDecoration: "none" }}>
+              <p className="register">Create a new account</p>
+            </Link>
           </form>
         </div>
       </div>

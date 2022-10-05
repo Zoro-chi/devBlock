@@ -1,21 +1,23 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 
 import "./feed.scss";
 import { Share, Post } from "../index";
 import { getTimelinePosts, getUserPosts } from "../../Api/postRequest";
+import { AuthContext } from "../../context/authContext";
 
 const Feed = ({ username }) => {
   const [posts, setPosts] = useState([]);
+  const { user } = useContext(AuthContext);
 
   useEffect(() => {
     const fetchTimeline = async () => {
       const timeline = username
         ? await getUserPosts(username)
-        : await getTimelinePosts("632b0b187c118122c34240ea");
+        : await getTimelinePosts(user._id);
       setPosts(timeline.data);
     };
     fetchTimeline();
-  }, [username]);
+  }, [username, user._id]);
 
   return (
     <div className="feed">

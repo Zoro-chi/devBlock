@@ -44,7 +44,7 @@ $white: #f4f8fa;
       .login-box {
         height: 25rem;
         padding: 1.3rem;
-        background-color: white;
+        background-color: $white;
         border-radius: 10px;
         display: flex;
         flex-flow: column;
@@ -96,6 +96,13 @@ $white: #f4f8fa;
             color: mediumspringgreen;
             cursor: pointer;
           }
+        }
+
+        .have-account {
+          color: firebrick;
+          text-align: center;
+          margin-top: 2rem;
+          font-size: 1.2rem;
         }
       }
     }

@@ -44,7 +44,7 @@ $white: #f4f8fa;
       .login-box {
         height: 20rem;
         padding: 1.3rem;
-        background-color: white;
+        background-color: $white;
         border-radius: 10px;
         display: flex;
         flex-flow: column;
@@ -74,6 +74,12 @@ $white: #f4f8fa;
             color: $blue;
             cursor: pointer;
           }
+          &:focus {
+            outline: none;
+          }
+          &:disabled {
+            cursor: not-allowed;
+          }
         }
 
         .login-forgot {
@@ -96,6 +102,15 @@ $white: #f4f8fa;
             color: mediumspringgreen;
             cursor: pointer;
           }
+          &:focus {
+            outline: none;
+          }
+        }
+
+        .register {
+          text-align: center;
+          color: firebrick;
+          font-size: 1.2rem;
         }
       }
     }

@@ -1,10 +1,14 @@
+import { useContext } from "react";
 import { Search, Person, Chat, Notifications } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 
 import "./navbar.scss";
 import { images } from "../../constants";
+import { AuthContext } from "../../context/authContext";
 
 const Navbar = () => {
+  const { user } = useContext(AuthContext);
+
   return (
     <div className="navbar-container">
       <nav className="navbar-left">
@@ -46,7 +50,13 @@ const Navbar = () => {
           </div>
         </div>
 
-        <img src={images.jane} alt="profile" className="navbar-img" />
+        <Link to={`/profile/${user.username}`}>
+          <img
+            src={user.profilePicture ? user.profilePicture : images.defaultPfp}
+            alt="profile"
+            className="navbar-img"
+          />
+        </Link>
       </nav>
     </div>
   );

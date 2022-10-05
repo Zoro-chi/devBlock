@@ -1,16 +1,19 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { FavoriteBorder, Favorite, MoreVert } from "@mui/icons-material";
 import { format } from "timeago.js";
 import { Link } from "react-router-dom";
 
 import "./post.scss";
 import { getUserById } from "../../Api/userRequests";
+import { likePost } from "../../Api/postRequest";
 import { images } from "../../constants";
+import { AuthContext } from "../../context/authContext";
 
 const Post = ({ post }) => {
   const [like, setLike] = useState(post.likes.length);
   const [isLiked, setIsLiked] = useState(false);
   const [user, setUser] = useState({});
+  const { user: currentUser } = useContext(AuthContext);
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -21,6 +24,9 @@ const Post = ({ post }) => {
   }, [post.userId]);
 
   const likeHandler = () => {
+    try {
+      likePost(post._id, currentUser._id);
+    } catch (error) {}
     setLike(isLiked ? like - 1 : like + 1);
     setIsLiked(!isLiked);
   };
