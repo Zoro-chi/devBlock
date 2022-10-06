@@ -3,24 +3,17 @@ const User = require("../Models/User");
 const cloudinary = require("../Middleware/cloudinary");
 
 const postController = {
-  // createPost: async (req, res) => {
-  //   const newPost = new Post(req.body);
-  //   try {
-  //     const savedPost = await newPost.save();
-  //     res.status(200).json(savedPost);
-  //   } catch (error) {
-  //     res.status(500).json(error);
-  //   }
-  // },
   createPost: async (req, res) => {
-    const result = await cloudinary.uploader.upload(req.file.path);
     try {
+      const fileString = req.body.image;
+      const result = await cloudinary.uploader.upload(fileString, {
+        folder: "devBlock",
+      });
       await Post.create({
-        image: result.secure_url,
+        img: result.secure_url,
         cloudinaryId: result.public_id,
         desc: req.body.desc,
-        likes: 0,
-        userId: req.user.id,
+        userId: req.body.userId,
       });
       res.status(200).json("Post saved");
     } catch (error) {

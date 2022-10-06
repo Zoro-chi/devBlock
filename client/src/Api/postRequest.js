@@ -25,3 +25,5 @@ export const getUserPosts = (username) =>
 
 export const likePost = (id, currentUserId) =>
   API.put(`/api/posts/${id}/like`, { userId: currentUserId });
+
+export const createPost = (post) => API.post(`/api/posts`, post);

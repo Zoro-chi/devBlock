@@ -1,9 +1,10 @@
 const router = require("express").Router();
 const postController = require("../Controllers/postController");
+const upload = require("../Middleware/multer");
 const { ensureAuth } = require("../Middleware/auth");
 
 // CREATE POST
-router.post("/", postController.createPost);
+router.post("/", upload.single("file"), postController.createPost);
 
 // UPDATE POST
 router.put("/:id", postController.updatePost);

@@ -23,6 +23,10 @@ const Post = ({ post }) => {
     fetchUser();
   }, [post.userId]);
 
+  useEffect(() => {
+    setIsLiked(post.likes.includes(currentUser._id))
+  }, [post.likes, currentUser._id])
+
   const likeHandler = () => {
     try {
       likePost(post._id, currentUser._id);
