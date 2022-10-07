@@ -33,14 +33,16 @@ const Share = () => {
   };
 
   const uploadImage = async (base64EncodedImage) => {
-    console.log(base64EncodedImage);
     const newPost = {
       userId: user._id,
       desc: desc.current.value,
       image: base64EncodedImage,
     };
     try {
-      await createPost(newPost);
+      const { data } = await createPost(newPost);
+      if (data) {
+        window.location.reload();
+      }
     } catch (error) {
       console.log(error);
     }
