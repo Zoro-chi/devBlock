@@ -22,3 +22,5 @@ export const getUserByName = (username) =>
   API.get(`/api/users?username=${username}`);
 
 export const getUserById = (id) => API.get(`/api/users?userId=${id}`);
+
+export const getFriendsList = (id) => API.get(`/api/users/friends/${id}`);

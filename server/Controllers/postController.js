@@ -94,7 +94,8 @@ const postController = {
   userPosts: async (req, res) => {
     try {
       const user = await User.findOne({ username: req.params.username });
-      const posts = await Post.find({ userId: user._id });
+      let posts = await Post.find({ userId: user._id });
+      posts.sort((a, b) => b.createdAt - a.createdAt);
       res.status(200).json(posts);
     } catch (error) {
       res.status(500).json(error);

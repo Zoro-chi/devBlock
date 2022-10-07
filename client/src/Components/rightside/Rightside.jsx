@@ -1,9 +1,29 @@
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+
 import "./rightside.scss";
 import { images } from "../../constants";
 import { Users } from "../../dummy";
 import Online from "../online/Online";
+import { getFriendsList } from "../../Api/userRequests";
 
 const Rightside = ({ user }) => {
+  const [friends, setFriends] = useState([]);
+
+  useEffect(() => {
+    const getFriends = async () => {
+      if (user) {
+        try {
+          const friendsList = await getFriendsList(user._id);
+          setFriends(friendsList.data);
+        } catch (error) {
+          console.log(error);
+        }
+      }
+    };
+    getFriends();
+  }, [user._id]);
+
   const HomeRightside = () => {
     return (
       <>
@@ -41,52 +61,29 @@ const Rightside = ({ user }) => {
 
         <h4 className="rightside-title"> Connected Devs </h4>
         <div className="rightside-followings">
-          <div className="rightside-following">
-            <img
-              src={images.defaultPfp}
-              alt="follower"
-              className="rightside-following-image"
-            />
-            <span className="rightside-following-name"> Paul </span>
-          </div>
-
-          <div className="rightside-following">
-            <img
-              src={images.defaultPfp}
-              alt="follower"
-              className="rightside-following-image"
-            />
-            <span className="rightside-following-name"> Paul </span>
-          </div>
-
-          <div className="rightside-following">
-            <img
-              src={images.defaultPfp}
-              alt="follower"
-              className="rightside-following-image"
-            />
-            <span className="rightside-following-name"> Paul </span>
-          </div>
-
-          <div className="rightside-following">
-            <img
-              src={images.defaultPfp}
-              alt="follower"
-              className="rightside-following-image"
-            />
-            <span className="rightside-following-name"> Paul </span>
-          </div>
-
-          <div className="rightside-following">
-            <img
-              src={images.defaultPfp}
-              alt="follower"
-              className="rightside-following-image"
-            />
-            <span className="rightside-following-name"> Paul </span>
-          </div>
+          {friends.map((friend, ind) => (
+            <Link
+              to={`/profile/${friend.username}`}
+              style={{ textDecoration: "none" }}
+              key={ind}
+            >
+              <div className="rightside-following">
+                <img
+                  src={
+                    friend.profilePicture
+                      ? friend.profilePicture
+                      : images.defaultPfp
+                  }
+                  alt="follower"
+                  className="rightside-following-image"
+                />
+                <span className="rightside-following-name">
+                  {friend.username}
+                </span>
+              </div>
+            </Link>
+          ))}
         </div>
-        {/* <img className="rightside-ad" src={images.ad} alt="" /> */}
       </>
     );
   };
