@@ -24,3 +24,9 @@ export const getUserByName = (username) =>
 export const getUserById = (id) => API.get(`/api/users?userId=${id}`);
 
 export const getFriendsList = (id) => API.get(`/api/users/friends/${id}`);
+
+export const followUser = (id, currentUserId) =>
+  API.put(`/api/users/${id}/follow`, { userId: currentUserId });
+
+export const unfollowUser = (id, currentUserId) =>
+  API.put(`/api/users/${id}/unfollow`, { userId: currentUserId });

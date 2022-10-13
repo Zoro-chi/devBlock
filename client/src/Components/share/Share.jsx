@@ -2,7 +2,13 @@ import { useState, useEffect, useContext, useRef } from "react";
 
 import "./share.scss";
 import { images } from "../../constants";
-import { PermMedia, Label, Room, EmojiEmotions } from "@mui/icons-material";
+import {
+  PermMedia,
+  Label,
+  Room,
+  EmojiEmotions,
+  Cancel,
+} from "@mui/icons-material";
 import { AuthContext } from "../../context/authContext";
 import { createPost } from "../../Api/postRequest";
 
@@ -11,20 +17,6 @@ const Share = () => {
   const [previewSource, setPreviewSource] = useState("");
   const { user } = useContext(AuthContext);
   const desc = useRef();
-
-  // const submitHandler = async (e) => {
-  //   e.preventDefault();
-  //   const newPost = {
-  //     userId: user._id,
-  //     desc: desc.current.value,
-  //     image: file,
-  //   };
-  //   try {
-  //     await createPost(newPost);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // }
 
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -64,15 +56,6 @@ const Share = () => {
     };
   };
 
-  // const upload = async (e, files) => {
-  //   e.preventDefault();
-  //   const formData = new FormData();
-  //   formData.append("file", file);
-  //   formData.append("upload_preset", "ua8jqffh");
-  //   const upload = await uploadImage(formData);
-  //   console.log(upload);
-  // };
-
   return (
     <div className="share">
       <div className="share-wrapper">
@@ -89,6 +72,12 @@ const Share = () => {
           />
         </div>
         <hr className="share-hr" />
+        {file && (
+          <div className="preview-image-container">
+            <img src={previewSource} alt="" className="preview-image" />
+            <Cancel className="preview-cancel" onClick={() => setFile(null)} />
+          </div>
+        )}
         <form className="share-bottom" onSubmit={submitHandler}>
           <div className="share-options">
             <label htmlFor="file" className="share-option">
@@ -123,13 +112,13 @@ const Share = () => {
           </button>
         </form>
       </div>
-      {previewSource && (
+      {/* {previewSource && (
         <div className="preview-image-container">
           <div className="preview-image-wrapper">
             <img src={previewSource} alt="" className="preview-image" />
           </div>
         </div>
-      )}
+      )} */}
     </div>
   );
 };

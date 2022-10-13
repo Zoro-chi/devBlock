@@ -22,7 +22,7 @@ const Feed = ({ username }) => {
   return (
     <div className="feed">
       <div className="feed-wrapper">
-        {username == user.username && <Share />}
+        {(!username || username == user.username) && <Share />}
         {posts.map((post, ind) => (
           <Post key={ind} post={post} />
         ))}

@@ -1,14 +1,28 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { Link } from "react-router-dom";
+import { Add, Remove } from "@mui/icons-material";
 
 import "./rightside.scss";
 import { images } from "../../constants";
 import { Users } from "../../dummy";
 import Online from "../online/Online";
-import { getFriendsList } from "../../Api/userRequests";
+import {
+  getFriendsList,
+  followUser,
+  unfollowUser,
+} from "../../Api/userRequests";
+import { AuthContext } from "../../context/authContext";
 
 const Rightside = ({ user }) => {
   const [friends, setFriends] = useState([]);
+  const { user: currentUser, dispatch } = useContext(AuthContext);
+  const [followed, setFollowed] = useState(
+    currentUser.following.includes(user?.id)
+  );
+
+  useEffect(() => {
+    setFollowed(currentUser.following.includes(user?.id));
+  }, [currentUser, user]);
 
   useEffect(() => {
     const getFriends = async () => {
@@ -22,7 +36,22 @@ const Rightside = ({ user }) => {
       }
     };
     getFriends();
-  }, [user._id]);
+  }, [user]);
+
+  const followHandler = async () => {
+    try {
+      if (followed) {
+        await unfollowUser(user._id, currentUser._id);
+        dispatch({ type: "UNFOLLOW", payload: user._id });
+      } else {
+        await followUser(user._id, currentUser._id);
+        dispatch({ type: "FOLLOW", payload: user._id });
+      }
+    } catch (error) {
+      console.log(error);
+    }
+    setFollowed(!followed);
+  };
 
   const HomeRightside = () => {
     return (
@@ -47,6 +76,12 @@ const Rightside = ({ user }) => {
   const ProfileRightside = () => {
     return (
       <>
+        {user.username !== currentUser.username && (
+          <button className="rightside-follow-button" onClick={followHandler}>
+            {followed ? "Unfollow" : "Follow"}
+            {followed ? <Remove /> : <Add />}
+          </button>
+        )}
         <h4 className="rightside-title"> Dev info </h4>
         <div className="rightside-info">
           <div className="rightside-info-item">
