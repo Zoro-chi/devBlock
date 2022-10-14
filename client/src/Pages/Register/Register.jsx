@@ -1,5 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useRef } from "react";
+import GitHubIcon from "@mui/icons-material/GitHub";
 
 import "./register.scss";
 import { register } from "../../Api/authRequests";
@@ -78,6 +79,10 @@ const Register = () => {
             />
             <button className="login-button" type="submit">
               Sign Up
+            </button>
+            <span className="or-span"> OR </span>
+            <button className="login-button" type="button">
+              <GitHubIcon />
             </button>
             <Link to={"/login"} style={{ textDecoration: "none" }}>
               <p className="have-account">Already have an account? Log In</p>

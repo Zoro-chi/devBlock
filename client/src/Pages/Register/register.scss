@@ -42,7 +42,7 @@ $white: #f4f8fa;
       }
 
       .login-box {
-        height: 25rem;
+        height: 35rem;
         padding: 1.3rem;
         background-color: $white;
         border-radius: 10px;
@@ -69,11 +69,19 @@ $white: #f4f8fa;
           color: white;
           font-size: 1.2rem;
           font-weight: 500;
+          margin-top: 1rem;
           &:hover {
             background-color: $white;
             color: $blue;
             cursor: pointer;
           }
+        }
+
+        .or-span {
+          text-align: center;
+          font-size: 1.5rem;
+          font-weight: 400;
+          color: firebrick;
         }
 
         .login-forgot {

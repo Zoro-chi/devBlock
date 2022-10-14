@@ -41,8 +41,8 @@ $white: #f4f8fa;
         font-size: 1.5rem;
       }
 
-      .login-box {
-        height: 20rem;
+      .login-box-form {
+        height: 25rem;
         padding: 1.3rem;
         background-color: $white;
         border-radius: 10px;
@@ -80,6 +80,13 @@ $white: #f4f8fa;
           &:disabled {
             cursor: not-allowed;
           }
+        }
+
+        .or-span {
+          text-align: center;
+          font-size: 1.5rem;
+          font-weight: 400;
+          color: firebrick;
         }
 
         .login-forgot {

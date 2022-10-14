@@ -1,5 +1,6 @@
 import { useContext, useRef } from "react";
 import { Link } from "react-router-dom";
+import GitHubIcon from "@mui/icons-material/GitHub";
 import { CircularProgress } from "@mui/material";
 
 import { loginCall } from "../../Api/apiCalls";
@@ -21,6 +22,10 @@ const Login = () => {
   };
   console.log(user);
 
+  const githubLogin = () => {
+    window.open("http://localhost:2121/api/auth/github", "_blank");
+  };
+
   return (
     <div className="login">
       <div className="login-wrapper">
@@ -32,7 +37,7 @@ const Login = () => {
         </div>
 
         <div className="login-right">
-          <form className="login-box" onSubmit={handleSubmit}>
+          <form className="login-box-form" onSubmit={handleSubmit}>
             <input
               type="email"
               placeholder="Email"
@@ -55,7 +60,15 @@ const Login = () => {
             >
               {isFetching ? <CircularProgress size="20px" /> : "Log In"}
             </button>
-            <span className="login-forgot"> Forgot password? </span>
+            {/* <span className="login-forgot"> Forgot password? </span> */}
+            <span className="or-span"> OR </span>
+            <button
+              className="login-button"
+              type="button"
+              onClick={githubLogin}
+            >
+              <GitHubIcon />
+            </button>
             {/* {isFetching ? (
               <button
                 className="login-register-button"
