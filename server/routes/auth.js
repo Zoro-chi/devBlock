@@ -17,14 +17,14 @@ router.get("/logout", (req, res) => {
   res.redirect(process.env.CLIENT_URL);
 });
 
-router.get("/login/failed", (req, res) => {
+router.get("/github/login/failed", (req, res) => {
   res.status(401).json({
     sucess: false,
     message: "failure",
   });
 });
 
-router.get("/login/success", (req, res) => {
+router.get("/github/login/success", (req, res) => {
   if (req.user) {
     res.status(200).json({
       sucess: true,
@@ -38,7 +38,8 @@ router.get(
   "/github/callback",
   passport.authenticate("github", {
     successRedirect: process.env.CLIENT_URL,
-    failureRedirect: "login/failed",
+    // failureRedirect: "login/failed",
+    failureRedirect: "/",
   })
 );
 

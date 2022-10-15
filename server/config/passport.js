@@ -11,31 +11,32 @@ module.exports = function (passport) {
         callbackURL: process.env.GITHUB_CALLBACK_URL,
       },
       async (accessToken, refreshToken, profile, done) => {
-        try {
-          User.findOrCreate({ githubId: profile.id }, function (err, user) {
-            return done(err, user);
-          });
-        } catch (error) {
-          console.log(error);
-          res.json(error);
-        }
-        // const newUser = {
-        //   username: profile.displayName,
-        //   email: profile.emial || "private",
-        //   profilePicture: profile.photos[0],
-        // };
         // try {
-        //   let user = await User.findOne({ gitHubId: profile.id });
-        //   if (user) {
-        //     done(null, user);
-        //   } else {
-        //     user = await User.create(newUser);
-        //     done(null, user);
-        //   }
+        //   User.findOrCreate({ githubId: profile.id }, function (err, user) {
+        //     return done(err, user);
+        //   });
         // } catch (error) {
         //   console.log(error);
         //   res.json(error);
         // }
+
+        const newUser = {
+          username: profile.displayName,
+          email: profile.email || "private",
+          profilePicture: profile.photos[0].value,
+        };
+        try {
+          let user = await User.findOne({ gitHubId: profile.id });
+          if (user) {
+            done(null, user);
+          } else {
+            user = await User.create(newUser);
+            done(null, user);
+          }
+        } catch (error) {
+          console.log(error);
+          res.json(error);
+        }
       }
     )
   );

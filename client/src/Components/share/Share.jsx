@@ -9,13 +9,13 @@ import {
   EmojiEmotions,
   Cancel,
 } from "@mui/icons-material";
-import { AuthContext } from "../../context/authContext";
+import { useAuthContext } from "../../context/authContext";
 import { createPost } from "../../Api/postRequest";
 
 const Share = () => {
   const [file, setFile] = useState("");
   const [previewSource, setPreviewSource] = useState("");
-  const { user } = useContext(AuthContext);
+  const { user } = useAuthContext();
   const desc = useRef();
 
   const submitHandler = async (e) => {

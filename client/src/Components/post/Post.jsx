@@ -7,13 +7,13 @@ import "./post.scss";
 import { getUserById } from "../../Api/userRequests";
 import { likePost } from "../../Api/postRequest";
 import { images } from "../../constants";
-import { AuthContext } from "../../context/authContext";
+import { useAuthContext } from "../../context/authContext";
 
 const Post = ({ post }) => {
   const [like, setLike] = useState(post.likes.length);
   const [isLiked, setIsLiked] = useState(false);
   const [user, setUser] = useState({});
-  const { user: currentUser } = useContext(AuthContext);
+  const { user: currentUser } = useAuthContext();
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -24,8 +24,8 @@ const Post = ({ post }) => {
   }, [post.userId]);
 
   useEffect(() => {
-    setIsLiked(post.likes.includes(currentUser._id))
-  }, [post.likes, currentUser._id])
+    setIsLiked(post.likes.includes(currentUser._id));
+  }, [post.likes, currentUser._id]);
 
   const likeHandler = () => {
     try {

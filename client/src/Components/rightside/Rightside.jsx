@@ -11,11 +11,11 @@ import {
   followUser,
   unfollowUser,
 } from "../../Api/userRequests";
-import { AuthContext } from "../../context/authContext";
+import { useAuthContext } from "../../context/authContext";
 
 const Rightside = ({ user }) => {
   const [friends, setFriends] = useState([]);
-  const { user: currentUser, dispatch } = useContext(AuthContext);
+  const { user: currentUser, dispatch } = useAuthContext();
   const [followed, setFollowed] = useState(
     currentUser.following.includes(user?.id)
   );

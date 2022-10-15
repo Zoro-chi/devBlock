@@ -4,14 +4,14 @@ import GitHubIcon from "@mui/icons-material/GitHub";
 import { CircularProgress } from "@mui/material";
 
 import { loginCall } from "../../Api/apiCalls";
-import { AuthContext } from "../../context/authContext";
+import { useAuthContext } from "../../context/authContext";
 
 import "./login.scss";
 
 const Login = () => {
   const email = useRef();
   const password = useRef();
-  const { user, isFetching, error, dispatch } = useContext(AuthContext);
+  const { user, isFetching, error, dispatch } = useAuthContext();
 
   const handleSubmit = (e) => {
     e.preventDefault();

@@ -11,10 +11,10 @@ import Home from "./Pages/Home/Home";
 import Profile from "./Pages/Profile/Profile";
 import Login from "./Pages/Login/Login";
 import Register from "./Pages/Register/Register";
-import { AuthContext } from "./context/authContext";
+import { useAuthContext } from "./context/authContext";
 
 function App() {
-  const { user } = useContext(AuthContext);
+  const { user } = useAuthContext();
 
   return (
     <Router>

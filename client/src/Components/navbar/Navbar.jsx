@@ -4,10 +4,10 @@ import { Link } from "react-router-dom";
 
 import "./navbar.scss";
 import { images } from "../../constants";
-import { AuthContext } from "../../context/authContext";
+import { useAuthContext } from "../../context/authContext";
 
 const Navbar = () => {
-  const { user } = useContext(AuthContext);
+  const { user } = useAuthContext();
 
   return (
     <div className="navbar-container">

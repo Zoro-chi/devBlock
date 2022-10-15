@@ -3,11 +3,11 @@ import { useState, useEffect, useContext } from "react";
 import "./feed.scss";
 import { Share, Post } from "../index";
 import { getTimelinePosts, getUserPosts } from "../../Api/postRequest";
-import { AuthContext } from "../../context/authContext";
+import { useAuthContext } from "../../context/authContext";
 
 const Feed = ({ username }) => {
   const [posts, setPosts] = useState([]);
-  const { user } = useContext(AuthContext);
+  const { user } = useAuthContext();
 
   useEffect(() => {
     const fetchTimeline = async () => {
