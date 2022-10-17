@@ -30,17 +30,19 @@ router.get("/github/login/success", (req, res) => {
       sucess: true,
       message: "successfull",
       user: req.user,
+      session: req.session,
     });
   }
 });
 
 router.get(
   "/github/callback",
-  passport.authenticate("github", {
-    successRedirect: process.env.CLIENT_URL,
-    // failureRedirect: "login/failed",
-    failureRedirect: "/",
-  })
+  passport.authenticate("github", { failureRedirect: "/login" }),
+  (req, res) => {
+    console.log(req.user);
+    console.log(req.session);
+    res.redirect(process.env.CLIENT_URL);
+  }
 );
 
 module.exports = router;

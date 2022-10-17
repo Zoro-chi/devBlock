@@ -1,5 +1,6 @@
 const GitHubStrategy = require("passport-github2").Strategy;
 const User = require("../Models/User");
+const bcrypt = require("bcrypt");
 require("dotenv").config();
 
 module.exports = function (passport) {
@@ -12,7 +13,8 @@ module.exports = function (passport) {
       },
       async (accessToken, refreshToken, profile, done) => {
         // try {
-        //   User.findOrCreate({ githubId: profile.id }, function (err, user) {
+        //   findOrCreate(User, { githubId: profile.id }, function (err, user) {
+        //     console.log(user);
         //     return done(err, user);
         //   });
         // } catch (error) {
@@ -20,11 +22,17 @@ module.exports = function (passport) {
         //   res.json(error);
         // }
 
+        const salt = await bcrypt.genSalt(10);
+        const hashedPass = await bcrypt.hash(profile.id, salt);
+
         const newUser = {
           username: profile.displayName,
-          email: profile.email || "private",
+          email: profile.emails[0].value,
           profilePicture: profile.photos[0].value,
+          gitHubId: profile.id,
+          password: hashedPass,
         };
+
         try {
           let user = await User.findOne({ gitHubId: profile.id });
           if (user) {
@@ -35,7 +43,6 @@ module.exports = function (passport) {
           }
         } catch (error) {
           console.log(error);
-          res.json(error);
         }
       }
     )

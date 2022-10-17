@@ -18,6 +18,9 @@ const UserSchema = new mongoose.Schema(
       required: true,
       min: 6,
     },
+    gitHubId: {
+      type: String,
+    },
     profilePicture: {
       type: String,
       default: "",

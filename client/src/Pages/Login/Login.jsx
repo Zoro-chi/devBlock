@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import { CircularProgress } from "@mui/material";
 
-import { loginCall } from "../../Api/apiCalls";
+import { loginCall, githubCall } from "../../Api/apiCalls";
 import { useAuthContext } from "../../context/authContext";
 
 import "./login.scss";
@@ -22,8 +22,10 @@ const Login = () => {
   };
   console.log(user);
 
-  const githubLogin = () => {
-    window.open("http://localhost:2121/api/auth/github", "_blank");
+  const github = (e) => {
+    e.preventDefault();
+    // githubCall(dispatch);
+    window.open("http://localhost:2121/api/auth/github");
   };
 
   return (
@@ -62,11 +64,7 @@ const Login = () => {
             </button>
             {/* <span className="login-forgot"> Forgot password? </span> */}
             <span className="or-span"> OR </span>
-            <button
-              className="login-button"
-              type="button"
-              onClick={githubLogin}
-            >
+            <button className="login-button" type="button" onClick={github}>
               <GitHubIcon />
             </button>
             {/* {isFetching ? (
