@@ -12,13 +12,10 @@ import Profile from "./Pages/Profile/Profile";
 import Login from "./Pages/Login/Login";
 import Register from "./Pages/Register/Register";
 import { useAuthContext, AuthContextProvider } from "./context/authContext";
-// import { useGetUser } from "./hooks/useGetUser";
 
 function App() {
-  const { state: user } = useAuthContext();
-  // const [user, setUser] = useState(null);
+  const [user, setUser] = useState(null);
   const { dispatch } = useAuthContext();
-  // const { getUser } = useGetUser();
 
   useEffect(() => {
     const getUser = () => {
@@ -36,7 +33,7 @@ function App() {
           throw new Error("Authentication failed");
         })
         .then((resObject) => {
-          // setUser(resObject.user);
+          setUser(resObject.user);
           dispatch({ type: "LOGIN_SUCCESS", payload: resObject.user });
         })
         .catch((error) => {
@@ -47,22 +44,17 @@ function App() {
   }, []);
 
   return (
-    <AuthContextProvider>
-      <Router>
-        <Routes>
-          <Route path="/" element={user ? <Home /> : <Login />} />
-          <Route
-            path="/login"
-            element={user ? <Navigate to="/" /> : <Login />}
-          />
-          <Route
-            path="/register"
-            element={user ? <Navigate to="/" /> : <Register />}
-          />
-          <Route path="/profile/:username" element={<Profile />} />
-        </Routes>
-      </Router>
-    </AuthContextProvider>
+    <Router>
+      <Routes>
+        <Route path="/" element={user ? <Home /> : <Login />} />
+        <Route path="/login" element={user ? <Navigate to="/" /> : <Login />} />
+        <Route
+          path="/register"
+          element={user ? <Navigate to="/" /> : <Register />}
+        />
+        <Route path="/profile/:username" element={<Profile />} />
+      </Routes>
+    </Router>
   );
 }
 
