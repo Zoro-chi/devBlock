@@ -18,8 +18,8 @@ function App() {
   const { dispatch } = useAuthContext();
 
   useEffect(() => {
-    const getUser = () => {
-      fetch("http://localhost:2121/api/auth/github/login/success", {
+    const getGithubUser = () => {
+      fetch("http://localhost:2121/api/auth/github/login/success", "_self", {
         method: "GET",
         credentials: "include",
         headers: {
@@ -40,7 +40,7 @@ function App() {
           console.log(error);
         });
     };
-    getUser();
+    getGithubUser();
   }, []);
 
   return (
