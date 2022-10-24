@@ -17,15 +17,15 @@ const Login = () => {
     e.preventDefault();
     loginCall(
       { email: email.current.value, password: password.current.value },
-      dispatch
+      dispatch({ type: "LOGIN_SUCCESS", payload: user })
     );
+    console.log(user);
   };
-  console.log(user);
 
   const github = (e) => {
     e.preventDefault();
     // githubCall(dispatch);
-    window.open("http://localhost:2121/api/auth/github");
+    window.open("http://localhost:2121/api/auth/github", "_self");
   };
 
   return (

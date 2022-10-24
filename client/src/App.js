@@ -19,7 +19,7 @@ function App() {
 
   useEffect(() => {
     const getGithubUser = () => {
-      fetch("http://localhost:2121/api/auth/github/login/success", "_self", {
+      fetch("http://localhost:2121/api/auth/github/login/success", {
         method: "GET",
         credentials: "include",
         headers: {
@@ -42,19 +42,25 @@ function App() {
     };
     getGithubUser();
   }, []);
+  console.log(user);
 
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={user ? <Home /> : <Login />} />
-        <Route path="/login" element={user ? <Navigate to="/" /> : <Login />} />
-        <Route
-          path="/register"
-          element={user ? <Navigate to="/" /> : <Register />}
-        />
-        <Route path="/profile/:username" element={<Profile />} />
-      </Routes>
-    </Router>
+    <AuthContextProvider>
+      <Router>
+        <Routes>
+          <Route path="/" element={user ? <Home /> : <Login />} />
+          <Route
+            path="/login"
+            element={user ? <Navigate to="/" /> : <Login />}
+          />
+          <Route
+            path="/register"
+            element={user ? <Navigate to="/" /> : <Register />}
+          />
+          <Route path="/profile/:username" element={<Profile />} />
+        </Routes>
+      </Router>
+    </AuthContextProvider>
   );
 }
 
