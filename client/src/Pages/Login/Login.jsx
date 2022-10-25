@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import { CircularProgress } from "@mui/material";
 
-import { loginCall, githubCall } from "../../Api/apiCalls";
+import { loginCall } from "../../Api/apiCalls";
 import { useAuthContext } from "../../context/authContext";
 
 import "./login.scss";
@@ -17,14 +17,13 @@ const Login = () => {
     e.preventDefault();
     loginCall(
       { email: email.current.value, password: password.current.value },
-      dispatch({ type: "LOGIN_SUCCESS", payload: user })
+      dispatch
     );
-    console.log(user);
   };
+  console.log(user);
 
   const github = (e) => {
     e.preventDefault();
-    // githubCall(dispatch);
     window.open("http://localhost:2121/api/auth/github", "_self");
   };
 
@@ -67,24 +66,15 @@ const Login = () => {
             <button className="login-button" type="button" onClick={github}>
               <GitHubIcon />
             </button>
-            {/* {isFetching ? (
-              <button
-                className="login-register-button"
-                style={{
-                  color: "mediumspringgreen",
-                  backgroundColor: "#f4f8fa",
-                }}
-              >
-                Create new account
-              </button>
-            ) : (
-              <button className="login-register-button">
-                Create new account
-              </button>
-            )} */}
+
             <Link to={"/register"} style={{ textDecoration: "none" }}>
               <p className="register">Create a new account</p>
             </Link>
+            {error && (
+              <div className="error" style={{ color: "red" }}>
+                {error}
+              </div>
+            )}
           </form>
         </div>
       </div>

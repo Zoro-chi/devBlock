@@ -12,16 +12,6 @@ module.exports = function (passport) {
         callbackURL: process.env.GITHUB_CALLBACK_URL,
       },
       async (accessToken, refreshToken, profile, done) => {
-        // try {
-        //   findOrCreate(User, { githubId: profile.id }, function (err, user) {
-        //     console.log(user);
-        //     return done(err, user);
-        //   });
-        // } catch (error) {
-        //   console.log(error);
-        //   res.json(error);
-        // }
-
         const salt = await bcrypt.genSalt(10);
         const hashedPass = await bcrypt.hash(profile.id, salt);
 

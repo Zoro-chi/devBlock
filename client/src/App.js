@@ -14,8 +14,12 @@ import Register from "./Pages/Register/Register";
 import { useAuthContext, AuthContextProvider } from "./context/authContext";
 
 function App() {
-  const [user, setUser] = useState(null);
-  const { dispatch } = useAuthContext();
+  const { user: currentUser, dispatch } = useAuthContext();
+  const [user, setUser] = useState(currentUser);
+
+  useEffect(() => {
+    setUser(currentUser);
+  }, []);
 
   useEffect(() => {
     const getGithubUser = () => {
@@ -33,8 +37,9 @@ function App() {
           throw new Error("Authentication failed");
         })
         .then((resObject) => {
-          setUser(resObject.user);
+          localStorage.setItem("user", JSON.stringify(resObject.user));
           dispatch({ type: "LOGIN_SUCCESS", payload: resObject.user });
+          setUser(resObject.user);
         })
         .catch((error) => {
           console.log(error);
