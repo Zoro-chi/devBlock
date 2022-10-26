@@ -19,7 +19,7 @@ function App() {
 
   useEffect(() => {
     setUser(currentUser);
-  }, []);
+  }, [currentUser]);
 
   useEffect(() => {
     const getGithubUser = () => {

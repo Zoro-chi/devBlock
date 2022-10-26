@@ -21,7 +21,7 @@ $white: #f4f8fa;
   z-index: 999;
 
   .navbar-left {
-    flex: 3;
+    flex: 2 1;
 
     .logo {
       font-size: 1.5rem;
@@ -75,6 +75,14 @@ $white: #f4f8fa;
       cursor: pointer;
       display: flex;
       gap: 1.5rem;
+
+      .link-component {
+        color: #f4f8fa;
+        text-decoration: none;
+        &:active {
+          color: #f4f8fa;
+        }
+      }
     }
 
     .navbar-icons {
@@ -107,6 +115,12 @@ $white: #f4f8fa;
       border-radius: 50%;
       object-fit: cover;
       cursor: pointer;
+    }
+
+    .logout {
+      cursor: pointer;
+      color: #f4f8fa;
+      font-size: 1rem;
     }
   }
 }

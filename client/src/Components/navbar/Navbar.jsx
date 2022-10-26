@@ -5,10 +5,20 @@ import { Link } from "react-router-dom";
 import "./navbar.scss";
 import { images } from "../../constants";
 import { useAuthContext } from "../../context/authContext";
+import { deleteCookies } from "../../utils";
 
 const Navbar = () => {
-  const { user } = useAuthContext();
+  const { user, dispatch } = useAuthContext();
   console.log(user);
+
+  const handleLogout = () => {
+    // remove user from local storage
+    localStorage.removeItem("user");
+    deleteCookies();
+    // dispatch logout
+    dispatch({ type: "LOGOUT" });
+    window.location.reload();
+  };
 
   return (
     <div className="navbar-container">
@@ -32,8 +42,9 @@ const Navbar = () => {
 
       <nav className="navbar-right">
         <div className="navbar-links">
-          <span className="navbar-link"> Homepage </span>
-          <span className="navbar-link"> Timeline </span>
+          <Link to={`/`} className="link-component">
+            <span className="navbar-link"> Timeline </span>
+          </Link>
         </div>
 
         <div className="navbar-icons">
@@ -58,6 +69,11 @@ const Navbar = () => {
             className="navbar-img"
           />
         </Link>
+
+        <span className="logout" onClick={handleLogout}>
+          {" "}
+          Logout{" "}
+        </span>
       </nav>
     </div>
   );
