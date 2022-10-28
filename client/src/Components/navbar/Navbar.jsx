@@ -6,6 +6,7 @@ import "./navbar.scss";
 import { images } from "../../constants";
 import { useAuthContext } from "../../context/authContext";
 import { deleteCookies } from "../../utils";
+import { logout } from "../../Api/authRequests";
 
 const Navbar = () => {
   const { user, dispatch } = useAuthContext();
@@ -14,10 +15,10 @@ const Navbar = () => {
   const handleLogout = () => {
     // remove user from local storage
     localStorage.removeItem("user");
-    deleteCookies();
+    logout();
     // dispatch logout
     dispatch({ type: "LOGOUT" });
-    window.location.reload();
+    // window.location.reload();
   };
 
   return (

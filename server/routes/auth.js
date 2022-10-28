@@ -9,6 +9,9 @@ router.post("/register", authController.register);
 // LOGIN
 router.post("/login", authController.login);
 
+// LOGOUT
+router.get("/logout", authController.logout);
+
 // GITHUB AUTH
 router.get("/github", passport.authenticate("github", { scope: ["profile"] }));
 

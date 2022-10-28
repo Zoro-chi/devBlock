@@ -23,3 +23,5 @@ export const login = (userCredentials) =>
 
 export const register = (userCredentials) =>
   API.post("/api/auth/register", userCredentials);
+
+export const logout = () => API.get("/api/auth/logout");

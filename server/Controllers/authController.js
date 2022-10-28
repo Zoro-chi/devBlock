@@ -36,6 +36,16 @@ const authController = {
       res.status(500).json(error);
     }
   },
+
+  logout: async (req, res, next) => {
+    req.logOut((err) => {
+      if (err) {
+        return next(err);
+      }
+    });
+    // req.session.destroy(() => res.clearCookie("connect.sid"));
+    res.redirect("/");
+  },
 };
 
 module.exports = authController;
