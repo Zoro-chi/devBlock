@@ -37,13 +37,8 @@ const authController = {
     }
   },
 
-  logout: async (req, res, next) => {
-    req.logOut((err) => {
-      if (err) {
-        return next(err);
-      }
-    });
-    // req.session.destroy(() => res.clearCookie("connect.sid"));
+  logout: async (req, res) => {
+    req.session.destroy(() => res.clearCookie("connect.sid"));
     res.redirect("/");
   },
 };

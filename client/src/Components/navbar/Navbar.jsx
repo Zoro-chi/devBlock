@@ -15,9 +15,8 @@ const Navbar = () => {
   const handleLogout = () => {
     // remove user from local storage
     localStorage.removeItem("user");
-    logout();
-    // dispatch logout
     dispatch({ type: "LOGOUT" });
+    logout();
     // window.location.reload();
   };
 
