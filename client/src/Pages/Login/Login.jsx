@@ -27,34 +27,6 @@ const Login = () => {
     window.open("http://localhost:2121/api/auth/github", "_self");
   };
 
-  useEffect(() => {
-    const getGithubUser = () => {
-      fetch("http://localhost:2121/api/auth/github/login/success", {
-        method: "GET",
-        credentials: "include",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-          "Access-Control-Allow-Credentials": true,
-        },
-      })
-        .then((response) => {
-          if (response.status == 200) return response.json();
-          throw new Error("Authentication failed");
-        })
-        .then((resObject) => {
-          localStorage.setItem("user", JSON.stringify(resObject.user));
-          dispatch({ type: "LOGIN_SUCCESS", payload: resObject.user });
-          // setUser(resObject.user);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    };
-    getGithubUser();
-  }, []);
-  console.log(user);
-
   return (
     <div className="login">
       <div className="login-wrapper">
