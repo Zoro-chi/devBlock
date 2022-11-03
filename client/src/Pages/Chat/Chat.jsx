@@ -1,6 +1,7 @@
 import "./Chat.scss";
 import Navbar from "../../Components/navbar/Navbar";
 import Conversation from "../../Components/conversation/Conversation";
+import Message from "../../Components/message/Message";
 
 const Chat = () => {
   return (
@@ -18,7 +19,12 @@ const Chat = () => {
         </div>
         <div className="chatBox">
           <div className="chatBoxWrap">
-            <div className="chatBoxTop"></div>
+            <div className="chatBoxTop">
+              <Message />
+              <Message />
+              <Message />
+              <Message />
+            </div>
             <div className="chatBoxBottom"></div>
           </div>
         </div>

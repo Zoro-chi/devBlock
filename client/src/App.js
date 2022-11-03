@@ -19,6 +19,10 @@ function App() {
   const [user, setUser] = useState(currentUser);
 
   useEffect(() => {
+    setUser(currentUser);
+  }, [currentUser]);
+
+  useEffect(() => {
     const getGithubUser = () => {
       fetch("http://localhost:2121/api/auth/github/login/success", {
         method: "GET",
@@ -46,10 +50,6 @@ function App() {
   }, [currentUser]);
   console.log(user);
 
-  // useEffect(() => {
-  //   setUser(currentUser);
-  // }, [currentUser]);
-
   return (
     <AuthContextProvider>
       <Router>
@@ -63,10 +63,7 @@ function App() {
             path="/register"
             element={user ? <Navigate to="/" /> : <Register />}
           />
-          <Route
-            path="/chat"
-            element={!user ? <Navigate to="/" /> : <Chat />}
-          />
+          <Route path="/chat" element={<Chat />} />
           <Route path="/profile/:username" element={<Profile />} />
         </Routes>
       </Router>

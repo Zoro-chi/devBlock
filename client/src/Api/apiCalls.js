@@ -1,4 +1,4 @@
-import { login, loginGithubUser } from "./authRequests";
+import { login } from "./authRequests";
 
 export const loginCall = async (userCredentials, dispatch) => {
   dispatch({ type: "LOGIN_START" });
