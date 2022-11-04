@@ -27,6 +27,40 @@ $white: #f4f8fa;
 
   .chatBox {
     flex: 5.5;
+
+    .chatBoxWrap {
+      display: flex;
+      flex-flow: column;
+
+      .chatBoxTop {
+        height: 100%;
+        overflow-y: scroll;
+        padding-right: 10px;
+      }
+
+      .chatBoxBottom {
+        margin-top: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .chatMessageInput {
+          width: 80%;
+          height: 5.63rem;
+          padding: 10px;
+        }
+
+        .chatSubmitBtn {
+          width: 4.37rem;
+          height: 2.5rem;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+          background-color: greenyellow;
+          font-weight: 600;
+        }
+      }
+    }
   }
 
   .chatOnline {

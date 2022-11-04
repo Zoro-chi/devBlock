@@ -39,11 +39,11 @@ $white: #f4f8fa;
     font-size: 0.8rem;
   }
 
-  .own {
+  &.own {
     align-items: flex-end;
 
     .messageTxt {
-      background-color: lightgray;
+      background-color: mediumspringgreen;
       color: black;
     }
   }

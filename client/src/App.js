@@ -38,9 +38,9 @@ function App() {
           throw new Error("Authentication failed");
         })
         .then((resObject) => {
-          localStorage.setItem("user", JSON.stringify(resObject.user));
+          // localStorage.setItem("user", JSON.stringify(resObject.user));
           dispatch({ type: "LOGIN_SUCCESS", payload: resObject.user });
-          setUser(resObject.user);
+          // setUser(resObject.user);
         })
         .catch((error) => {
           console.log(error);
@@ -63,7 +63,7 @@ function App() {
             path="/register"
             element={user ? <Navigate to="/" /> : <Register />}
           />
-          <Route path="/chat" element={<Chat />} />
+          <Route path="/chat" element={user ? <Chat /> : <Navigate to="/" />} />
           <Route path="/profile/:username" element={<Profile />} />
         </Routes>
       </Router>

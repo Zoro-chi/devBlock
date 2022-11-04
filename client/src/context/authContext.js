@@ -8,17 +8,25 @@ export const useAuthContext = () => {
   return useContext(AuthContext);
 };
 
+const INITIAL_STATE = {
+  user: JSON.parse(localStorage.getItem("user")) || null,
+  isFetching: false,
+  error: false
+}
+
 export const AuthContextProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(AuthReducer, {
-    user: null,
-  });
+  const [state, dispatch] = useReducer(AuthReducer, INITIAL_STATE)
 
   useEffect(() => {
-    const user = JSON.parse(localStorage.getItem("user"));
-    if (user) {
-      dispatch({ type: "LOGIN_SUCCESS", payload: user });
-    }
-  }, []);
+    localStorage.setItem("user", JSON.stringify(state.user))
+  }, [state.user])
+
+  // useEffect(() => {
+  //   const user = JSON.parse(localStorage.getItem("user"));
+  //   if (user) {
+  //     dispatch({ type: "LOGIN_SUCCESS", payload: user });
+  //   }
+  // }, []);
 
   console.log(`Auth change`, state.user);
 

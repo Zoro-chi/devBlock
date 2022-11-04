@@ -2,6 +2,7 @@ import "./Chat.scss";
 import Navbar from "../../Components/navbar/Navbar";
 import Conversation from "../../Components/conversation/Conversation";
 import Message from "../../Components/message/Message";
+import OnlineChat from "../../Components/onlineChat/OnlineChat";
 
 const Chat = () => {
   return (
@@ -21,15 +22,23 @@ const Chat = () => {
           <div className="chatBoxWrap">
             <div className="chatBoxTop">
               <Message />
+              <Message own={true} />
               <Message />
-              <Message />
-              <Message />
+              <Message own={true} />
             </div>
-            <div className="chatBoxBottom"></div>
+            <div className="chatBoxBottom">
+              <textarea
+                className="chatMessageInput"
+                placeholder="Write a message..."
+              ></textarea>
+              <button className="chatSubmitBtn"> Send </button>
+            </div>
           </div>
         </div>
         <div className="chatOnline">
-          <div className="chatOnlineWrap"></div>
+          <div className="chatOnlineWrap">
+            <OnlineChat />
+          </div>
         </div>
       </div>
     </>
