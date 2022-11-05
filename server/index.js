@@ -17,6 +17,8 @@ require("./config/passport")(passport);
 const authRoute = require("./routes/auth");
 const userRoute = require("./routes/users");
 const postRoute = require("./routes/posts");
+const convoRoute = require("./routes/conversation");
+const messageRoute = require("./routes/message");
 
 // MONGOOSE CONNECTION
 connectDB();
@@ -43,7 +45,7 @@ app.use(
     resave: false,
     saveUninitialized: false,
     cookie: {
-      maxAge: 1000 * 60 * 60 * 24
+      maxAge: 1000 * 60 * 60 * 24,
     },
     store: MongoStore.create({
       mongoUrl: process.env.MONGO_URI,
@@ -59,6 +61,8 @@ app.use(passport.session());
 app.use("/api/users", userRoute);
 app.use("/api/auth", authRoute);
 app.use("/api/posts", postRoute);
+app.use("/api/message", messageRoute);
+app.use("/api/conversation", convoRoute);
 
 const PORT = process.env.PORT || 2121;
 app.listen(PORT, () => {

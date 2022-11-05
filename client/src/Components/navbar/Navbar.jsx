@@ -10,7 +10,7 @@ import { logout } from "../../Api/authRequests";
 
 const Navbar = () => {
   const { user, dispatch } = useAuthContext();
-  console.log(user);
+  // console.log(user);
 
   const handleLogout = () => {
     // remove user from local storage
