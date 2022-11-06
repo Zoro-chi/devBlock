@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 import "./conversation.scss";
-import defaultPfp from "../../assets/images/defaultPfp.jpg";
+import { images } from "../../constants/index";
 import { getUserById } from "../../Api/userRequests";
 
 const Conversation = ({ conversation, currentUser }) => {
@@ -26,7 +26,7 @@ const Conversation = ({ conversation, currentUser }) => {
   return (
     <div className="conversation">
       <img
-        src={user?.profilePicture ? user.profilePicture : defaultPfp}
+        src={user?.profilePicture ? user.profilePicture : images.defaultPfp}
         alt=""
         className="conversationImg"
       />

@@ -48,7 +48,6 @@ function App() {
     };
     getGithubUser();
   }, [currentUser]);
-  console.log(user);
 
   return (
     <AuthContextProvider>

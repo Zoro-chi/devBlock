@@ -22,3 +22,5 @@ export const getConversations = (userId) =>
   API.get(`/api/conversation/${userId}`);
 
 export const getMessages = (chatId) => API.get(`/api/message/${chatId}`);
+
+export const newMsgSend = (message) => API.post(`/api/message`, message);
