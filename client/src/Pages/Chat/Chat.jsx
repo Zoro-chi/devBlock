@@ -18,7 +18,9 @@ const Chat = () => {
   const [chat, setChat] = useState(null);
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
-  const socket = useRef(io("ws://localhost:2244"));
+  const [incomingMsg, setIncomingMsg] = useState(null);
+  const [onlineFriends, setOnlineFriends] = useState([]);
+  const socket = useRef();
   const latestMsgScroll = useRef();
   const { user } = useAuthContext();
 
@@ -51,17 +53,34 @@ const Chat = () => {
     latestMsgScroll.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
+  // CONNECTS SOCKET TO APP
+  useEffect(() => {
+    socket.current = io("ws://localhost:2244");
+    socket.current.on("getMsg", (data) => {
+      setIncomingMsg({
+        sender: data.senderId,
+        text: data.txt,
+        createdAt: Date.now(),
+      });
+    });
+  }, []);
+
+  useEffect(() => {
+    incomingMsg &&
+      chat?.members.includes(incomingMsg.sender) &&
+      setMessages((prev) => [...prev, incomingMsg]);
+  }, [chat, incomingMsg]);
+
   useEffect(() => {
     socket.current.emit("sendUser", user._id);
     socket.current.on("getUsers", (users) => {
-      console.log(users);
+      setOnlineFriends(
+        user.following.filter((follower) =>
+          users.some((u) => u.userId === follower)
+        )
+      );
     });
   }, [user]);
-
-  // STOPS SOCKET FROM CONNECTING MULTIPLE TIMES
-  useEffect(() => {
-    socket.current = io("ws://localhost:2244");
-  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -70,6 +89,14 @@ const Chat = () => {
       text: newMessage,
       conversationId: chat._id,
     };
+
+    const receiverId = chat.members.find((member) => member !== user._id);
+
+    socket.current.emit("sendMsg", {
+      senderId: user._id,
+      receiverId,
+      txt: newMessage,
+    });
 
     try {
       const res = await newMsgSend(message);
@@ -100,12 +127,8 @@ const Chat = () => {
               <>
                 <div className="chatBoxTop">
                   {messages.map((msg, ind) => (
-                    <div ref={latestMsgScroll}>
-                      <Message
-                        message={msg}
-                        key={ind}
-                        own={msg.sender === user._id}
-                      />
+                    <div ref={latestMsgScroll} key={ind}>
+                      <Message message={msg} own={msg.sender === user._id} />
                     </div>
                   ))}
                 </div>
@@ -117,8 +140,7 @@ const Chat = () => {
                     onChange={(e) => setNewMessage(e.target.value)}
                   ></textarea>
                   <button className="chatSubmitBtn" onClick={handleSubmit}>
-                    {" "}
-                    Send{" "}
+                    Send
                   </button>
                 </div>
               </>
@@ -131,7 +153,11 @@ const Chat = () => {
         </div>
         <div className="chatOnline">
           <div className="chatOnlineWrap">
-            <OnlineChat />
+            <OnlineChat
+              onlineFriends={onlineFriends}
+              currentUser={user._id}
+              setChat={setChat}
+            />
           </div>
         </div>
       </div>

@@ -27,4 +27,16 @@ router.post("/", async (req, res) => {
   }
 });
 
+// GET CONVO OF TWO USERS-ID
+router.get("/find/:firstUserId/:secondUserId", async (req, res) => {
+  try {
+    const convo = await Conversation.findOne({
+      members: { $all: [req.params.firstUserId, req.params.secondUserId] },
+    });
+    res.status(200).json(convo);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+});
+
 module.exports = router;
