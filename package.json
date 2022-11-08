@@ -3,11 +3,10 @@
   "version": "1.0.0",
   "description": "Social app",
   "scripts": {
-    "build": "echo \"No build specified\" && exit 1",
     "test": "echo \"No test specified\" && exit 1",
-    "client": "cd client && yarn start",
+    "build": "cd client && yarn start",
     "server": "cd server && yarn start",
-    "start": "yarn client && yarn server"
+    "start": "yarn server"
   },
   "repository": {
     "type": "git",
