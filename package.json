@@ -4,11 +4,11 @@
   "description": "Social app",
   "scripts": {
     "test": "echo \"No test specified\" && exit 1",
-    "postbuild": "cd client && yarn install & cd server && yarn install & cd socket && yarn install",
+    "build": "cd client && yarn install & cd server && yarn install & cd socket && yarn install",
     "server": "cd server && yarn start",
     "socket": "cd socket && yarn start",
-    "build": "cd client && yarn build",
-    "start": "yarn server & yarn socket"
+    "client": "cd client && yarn build",
+    "start": "yarn client & yarn server & yarn socket"
   },
   "repository": {
     "type": "git",
