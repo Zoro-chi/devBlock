@@ -8,7 +8,7 @@
     "server": "cd server && yarn start",
     "socket": "cd socket && yarn start",
     "client": "cd client && yarn build",
-    "start": "yarn client & yarn server & yarn socket"
+    "start": "npm run client & npm run server & npm run socket"
   },
   "repository": {
     "type": "git",
