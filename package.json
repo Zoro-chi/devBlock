@@ -4,9 +4,10 @@
   "description": "Social app",
   "scripts": {
     "test": "echo \"No test specified\" && exit 1",
-    "build": "cd client && yarn start",
+    "build": "cd client && yarn build",
     "server": "cd server && yarn start",
-    "start": "yarn server"
+    "socket": "cd socket && yarn start",
+    "start": "yarn server && yarn socket"
   },
   "repository": {
     "type": "git",
