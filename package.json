@@ -1,0 +1,20 @@
+{
+  "name": "devBlock",
+  "version": "1.0.0",
+  "description": "Social app",
+  "scripts": {
+    "build": "echo \"No build specified\" && exit 1",
+    "test": "echo \"No test specified\" && exit 1",
+    "start": "cd server && yarn start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Zoro-chi/devBlock.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Zoro-chi/devBlock/issues"
+  },
+  "homepage": "https://github.com/Zoro-chi/devBlock#readme"
+}
