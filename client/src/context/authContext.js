@@ -21,13 +21,6 @@ export const AuthContextProvider = ({ children }) => {
     localStorage.setItem("user", JSON.stringify(state.user))
   }, [state.user])
 
-  // useEffect(() => {
-  //   const user = JSON.parse(localStorage.getItem("user"));
-  //   if (user) {
-  //     dispatch({ type: "LOGIN_SUCCESS", payload: user });
-  //   }
-  // }, []);
-
   console.log(`Auth change`, state.user);
 
   return (
