@@ -21,7 +21,7 @@ export const AuthContextProvider = ({ children }) => {
     localStorage.setItem("user", JSON.stringify(state.user))
   }, [state.user])
 
-  console.log(`Auth change`, state.user);
+  // console.log(`Auth change`, state.user);
 
   return (
     <AuthContext.Provider
