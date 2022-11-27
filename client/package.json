@@ -7,7 +7,8 @@
       "localhost",
       ".localhost"
     ],
-    "proxy": "http://localhost:2121/"
+    "proxy": "https://dev-block-api.onrender.com/"
+
   },
   "dependencies": {
     "@emotion/react": "^11.10.4",
