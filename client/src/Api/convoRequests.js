@@ -4,7 +4,7 @@ const getBaseUrl = () => {
   let url;
   switch (process.env.NODE_ENV) {
     case "production":
-      url = "https://dev-block-api.onrender.com/"
+      url = "https://dev-block-socket.onrender.com/"
       break;
 
     case "development":

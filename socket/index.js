@@ -6,8 +6,6 @@ const io = require("socket.io")(process.env.PORT || 2244, {
   },
 });
 
-console.log(process.env.CLIENT_URL)
-
 let users = [];
 
 const addUser = (userId, socketId) => {
