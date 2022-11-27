@@ -53,7 +53,9 @@ const Navbar = () => {
             <span className="navbar-icon-counter"> 1 </span>
           </div>
           <div className="navbar-icon-item">
-            <Chat />
+            <Link to={"/chat"} className="link-component">
+              <Chat />
+            </Link>
             <span className="navbar-icon-counter"> 2 </span>
           </div>
           <div className="navbar-icon-item">
