@@ -2,14 +2,8 @@
   "name": "client",
   "version": "0.1.0",
   "private": true,
-  "options": {
-    "allowedHosts": [
-      "localhost",
-      ".localhost"
-    ],
-    "proxy": "https://dev-block-api.onrender.com/"
+  "proxy": "https://dev-block-api.onrender.com/",
 
-  },
   "dependencies": {
     "@emotion/react": "^11.10.4",
     "@emotion/styled": "^11.10.4",
