@@ -1,4 +1,7 @@
-require("dotenv").config()
+const httpServer = require("http").createServer();
+require("dotenv").config();
+
+// TODO: INSTALL EXPRESS
 
 // ! FOR DEV ENV
 // const io = require("socket.io")(process.env.PORT || 2244, {
@@ -7,14 +10,13 @@ require("dotenv").config()
 //   },
 // });
 
-const io = require("socket.io")(process.env.PORT || 2244, {
+const io = require("socket.io")(httpServer, {
   cors: {
     origin: process.env.CLIENT_URL,
   },
-  path: process.env.SOCKET_URL
 });
 
-console.log(process.env.SOCKET_URL)
+console.log(process.env.SOCKET_URL);
 
 let users = [];
 
@@ -58,4 +60,9 @@ io.on("connection", (socket) => {
     // SEND USERS TO FE(CLIENT-SIDE)
     io.emit("getUsers", users);
   });
+});
+
+const PORT = process.env.PORT || 2244;
+httpServer.listen(PORT, () => {
+  console.log(`Socket server running on ${PORT}`);
 });
