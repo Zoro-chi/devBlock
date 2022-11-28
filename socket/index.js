@@ -1,8 +1,6 @@
 const httpServer = require("http").createServer();
 require("dotenv").config();
 
-// TODO: INSTALL EXPRESS
-
 // ! FOR DEV ENV
 // const io = require("socket.io")(process.env.PORT || 2244, {
 //   cors: {
@@ -14,6 +12,7 @@ const io = require("socket.io")(httpServer, {
   cors: {
     origin: process.env.CLIENT_URL,
   },
+  path: process.env.API_URL,
 });
 
 console.log(process.env.SOCKET_URL);
