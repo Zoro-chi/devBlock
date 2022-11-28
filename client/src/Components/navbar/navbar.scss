@@ -123,4 +123,13 @@ $white: #f4f8fa;
       font-size: 1rem;
     }
   }
+
+    .link-component {
+      color: #f4f8fa;
+      text-decoration: none;
+  
+      &:active {
+        color: #f4f8fa;
+      }
+    }
 }

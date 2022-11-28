@@ -7,11 +7,14 @@ require("dotenv").config()
 //   },
 // });
 
-const io = require("socket.io")(process.env.SOCKET_URL, {
+const io = require("socket.io")(process.env.PORT || 2244, {
   cors: {
     origin: process.env.CLIENT_URL,
   },
+  path: process.env.SOCKET_URL
 });
+
+console.log(process.env.SOCKET_URL)
 
 let users = [];
 
