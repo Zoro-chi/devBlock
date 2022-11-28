@@ -1,6 +1,13 @@
 require("dotenv").config()
 
-const io = require("socket.io")(process.env.PORT || 2244, {
+// ! FOR DEV ENV
+// const io = require("socket.io")(process.env.PORT || 2244, {
+//   cors: {
+//     origin: "http://localhost:3000",
+//   },
+// });
+
+const io = require("socket.io")(process.env.SOCKET_URL, {
   cors: {
     origin: process.env.CLIENT_URL,
   },
