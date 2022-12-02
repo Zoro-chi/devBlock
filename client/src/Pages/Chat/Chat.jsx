@@ -57,7 +57,7 @@ const Chat = () => {
 	useEffect(() => {
 		// ! FOR DEV ENV
 		// socket.current = io("ws://localhost:2244");
-		socket.current = io("https://dev-block-socket.onrender.com/");
+		socket.current = io("https://dev-block-api.onrender.com/");
 		socket.current.on("getMsg", (data) => {
 			setIncomingMsg({
 				sender: data.senderId,
